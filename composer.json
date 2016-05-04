@@ -1,0 +1,31 @@
+{
+    "name": "caxy/badgekit-client",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Benjamin Doherty",
+            "email": "bjd@bangpound.org"
+        }
+    ],
+    "require": {
+        "guzzlehttp/command": "^0.9",
+        "guzzlehttp/guzzle": "^6.2",
+        "namshi/jose": "^7.1"
+    },
+    "require-dev": {
+        "symfony/yaml": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Caxy\\BadgeKit\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}

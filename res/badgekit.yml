@@ -1,0 +1,465 @@
+get_systems:
+    -
+        method: GET
+        path: /systems
+        parameters: []
+get_system:
+    -
+        method: GET
+        path: '/systems/{system}'
+        parameters: [system]
+post_system:
+    -
+        method: POST
+        path: /systems
+        parameters: []
+put_system:
+    -
+        method: PUT
+        path: '/systems/{system}'
+        parameters: [system]
+delete_systems:
+    -
+        method: DELETE
+        path: '/systems/{system}'
+        parameters: [system]
+get_issuers:
+    -
+        method: GET
+        path: '/systems/{system}/issuers'
+        parameters: [system]
+get_issuer:
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}'
+        parameters: [system, issuer]
+post_issuers:
+    -
+        method: POST
+        path: '/systems/{system}/issuers'
+        parameters: [system]
+put_issuers:
+    -
+        method: PUT
+        path: '/systems/{system}/issuers/{issuer}'
+        parameters: [system, issuer]
+delete_issuers:
+    -
+        method: DELETE
+        path: '/systems/{system}/issuers/{issuer}'
+        parameters: [system, issuer]
+get_programs:
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/programs'
+        parameters: [system, issuer]
+get_program:
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}'
+        parameters: [system, issuer, program]
+post_programs:
+    -
+        method: POST
+        path: '/systems/{system}/issuers/{issuer}/programs'
+        parameters: [system, issuer]
+put_programs:
+    -
+        method: PUT
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}'
+        parameters: [system, issuer, program]
+delete_programs:
+    -
+        method: DELETE
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}'
+        parameters: [system, issuer, program]
+get_badges:
+    -
+        method: GET
+        path: '/systems/{system}/badges'
+        parameters: [system]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/badges'
+        parameters: [system, issuer]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges'
+        parameters: [system, issuer, program]
+    -
+        method: GET
+        path: /public/badges
+        parameters: []
+get_badge:
+    -
+        method: GET
+        path: '/systems/{system}/badges/{badge}'
+        parameters: [system, badge]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/badges/{badge}'
+        parameters: [system, issuer, badge]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}'
+        parameters: [system, issuer, program, badge]
+post_badge:
+    -
+        method: POST
+        path: '/systems/{system}/badges'
+        parameters: [system]
+    -
+        method: POST
+        path: '/systems/{system}/issuers/{issuer}/badges'
+        parameters: [system, issuer]
+    -
+        method: POST
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges'
+        parameters: [system, issuer, program]
+put_badge:
+    -
+        method: PUT
+        path: '/systems/{system}/badges/{badge}'
+        parameters: [system, badge]
+    -
+        method: PUT
+        path: '/systems/{system}/issuers/{issuer}/badges/{badge}'
+        parameters: [system, issuer, badge]
+    -
+        method: PUT
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}'
+        parameters: [system, issuer, program, badge]
+delete_badge:
+    -
+        method: DELETE
+        path: '/systems/{system}/badges/{badge}'
+        parameters: [system, badge]
+    -
+        method: DELETE
+        path: '/systems/{system}/issuers/{issuer}/badges/{badge}'
+        parameters: [system, issuer, badge]
+    -
+        method: DELETE
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}'
+        parameters: [system, issuer, program, badge]
+get_claim_code:
+    -
+        method: GET
+        path: '/systems/{system}/codes/{code}'
+        parameters: [system, code]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/codes/{code}'
+        parameters: [system, issuer, code]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/codes/{code}'
+        parameters: [system, issuer, program, code]
+    -
+        method: GET
+        path: '/systems/{system}/badges/{badge}/codes/{code}'
+        parameters: [system, badge, code]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/badges/{badge}/codes/{code}'
+        parameters: [system, issuer, badge, code]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}/codes/{code}'
+        parameters: [system, issuer, program, badge, code]
+get_claim_codes:
+    -
+        method: GET
+        path: '/systems/{system}/badges/{badge}/codes'
+        parameters: [system, badge]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/badges/{badge}/codes'
+        parameters: [system, issuer, badge]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}/codes'
+        parameters: [system, issuer, program, badge]
+post_claim_code:
+    -
+        method: POST
+        path: '/systems/{system}/badges/{badge}/codes'
+        parameters: [system, badge]
+    -
+        method: POST
+        path: '/systems/{system}/issuers/{issuer}/badges/{badge}/codes'
+        parameters: [system, issuer, badge]
+    -
+        method: POST
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}/codes'
+        parameters: [system, issuer, program, badge]
+post_claim_code_claim:
+    -
+        method: POST
+        path: '/systems/{system}/badges/{badge}/codes/{code}/claim'
+        parameters: [system, badge, code]
+    -
+        method: POST
+        path: '/systems/{system}/issuers/{issuer}/badges/{badge}/codes/{code}/claim'
+        parameters: [system, issuer, badge, code]
+    -
+        method: POST
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}/codes/{code}/claim'
+        parameters: [system, issuer, program, badge, code]
+post_claim_code_random:
+    -
+        method: POST
+        path: '/systems/{system}/badges/{badge}/codes/random'
+        parameters: [system, badge]
+    -
+        method: POST
+        path: '/systems/{system}/issuers/{issuer}/badges/{badge}/codes/random'
+        parameters: [system, issuer, badge]
+    -
+        method: POST
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}/codes/random'
+        parameters: [system, issuer, program, badge]
+delete_claim_code:
+    -
+        method: DELETE
+        path: '/systems/{system}/badges/{badge}/codes/{code}'
+        parameters: [system, badge, code]
+    -
+        method: DELETE
+        path: '/systems/{system}/issuers/{issuer}/badges/{badge}/codes/{code}'
+        parameters: [system, issuer, badge, code]
+    -
+        method: DELETE
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}/codes/{code}'
+        parameters: [system, issuer, program, badge, code]
+get_badge_instance:
+    -
+        method: GET
+        path: '/systems/{system}/instances/{email}'
+        parameters: [system, email]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/instances/{email}'
+        parameters: [system, issuer, email]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/instances/{email}'
+        parameters: [system, issuer, program, email]
+    -
+        method: GET
+        path: '/systems/{system}/badges/{badge}/instances/{email}'
+        parameters: [system, badge, email]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/badges/{badge}/instances/{email}'
+        parameters: [system, issuer, badge, email]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}/instances/{email}'
+        parameters: [system, issuer, program, badge, email]
+get_badge_instances:
+    -
+        method: GET
+        path: '/systems/{system}/badges/{badge}/instances'
+        parameters: [system, badge]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/badges/{badge}/instances'
+        parameters: [system, issuer, badge]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}/instances'
+        parameters: [system, issuer, program, badge]
+post_badge_instance:
+    -
+        method: POST
+        path: '/systems/{system}/badges/{badge}/instances'
+        parameters: [system, badge]
+    -
+        method: POST
+        path: '/systems/{system}/issuers/{issuer}/badges/{badge}/instances'
+        parameters: [system, issuer, badge]
+    -
+        method: POST
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}/instances'
+        parameters: [system, issuer, program, badge]
+delete_badge_instance:
+    -
+        method: DELETE
+        path: '/systems/{system}/badges/{badge}/instances/{email}'
+        parameters: [system, badge, email]
+    -
+        method: DELETE
+        path: '/systems/{system}/issuers/{issuer}/badges/{badge}/instances/{email}'
+        parameters: [system, issuer, badge, email]
+    -
+        method: DELETE
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}/instances/{email}'
+        parameters: [system, issuer, program, badge, email]
+get_applications:
+    -
+        method: GET
+        path: '/systems/{system}/applications'
+        parameters: [system]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/applications'
+        parameters: [system, issuer]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/applications'
+        parameters: [system, issuer, program]
+    -
+        method: GET
+        path: '/systems/{system}/badges/{badge}/applications'
+        parameters: [system, badge]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/badges/{badge}/applications'
+        parameters: [system, issuer, badge]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}/applications'
+        parameters: [system, issuer, program, badge]
+get_application:
+    -
+        method: GET
+        path: '/systems/{system}/badges/{badge}/applications/{application}'
+        parameters: [system, badge, application]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/badges/{badge}/applications/{application}'
+        parameters: [system, issuer, badge, application]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}/applications/{application}'
+        parameters: [system, issuer, program, badge, application]
+get_reviews:
+    -
+        method: GET
+        path: '/systems/{system}/badges/{badge}/applications/{application}/reviews'
+        parameters: [system, badge, application]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/badges/{badge}/applications/{application}/reviews'
+        parameters: [system, issuer, badge, application]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}/applications/{application}/reviews'
+        parameters: [system, issuer, program, badge, application]
+get_review:
+    -
+        method: GET
+        path: '/systems/{system}/badges/{badge}/applications/{application}/reviews/{review}'
+        parameters: [system, badge, application, review]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/badges/{badge}/applications/{application}/reviews/{review}'
+        parameters: [system, issuer, badge, application, review]
+    -
+        method: GET
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}/applications/{application}/reviews/{review}'
+        parameters: [system, issuer, program, badge, application, review]
+post_application:
+    -
+        method: POST
+        path: '/systems/{system}/badges/{badge}/applications'
+        parameters: [system, badge]
+    -
+        method: POST
+        path: '/systems/{system}/issuers/{issuer}/badges/{badge}/applications'
+        parameters: [system, issuer, badge]
+    -
+        method: POST
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}/applications'
+        parameters: [system, issuer, program, badge]
+post_review:
+    -
+        method: POST
+        path: '/systems/{system}/badges/{badge}/applications/{application}/reviews'
+        parameters: [system, badge, application]
+    -
+        method: POST
+        path: '/systems/{system}/issuers/{issuer}/badges/{badge}/applications/{application}/reviews'
+        parameters: [system, issuer, badge, application]
+    -
+        method: POST
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}/applications/{application}/reviews'
+        parameters: [system, issuer, program, badge, application]
+put_application:
+    -
+        method: PUT
+        path: '/systems/{system}/badges/{badge}/applications/{application}'
+        parameters: [system, badge, application]
+    -
+        method: PUT
+        path: '/systems/{system}/issuers/{issuer}/badges/{badge}/applications/{application}'
+        parameters: [system, issuer, badge, application]
+    -
+        method: PUT
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}/applications/{application}'
+        parameters: [system, issuer, program, badge, application]
+put_review:
+    -
+        method: PUT
+        path: '/systems/{system}/badges/{badge}/applications/{application}/reviews/{review}'
+        parameters: [system, badge, application, review]
+    -
+        method: PUT
+        path: '/systems/{system}/issuers/{issuer}/badges/{badge}/applications/{application}/reviews/{review}'
+        parameters: [system, issuer, badge, application, review]
+    -
+        method: PUT
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}/applications/{application}/reviews/{review}'
+        parameters: [system, issuer, program, badge, application, review]
+delete_application:
+    -
+        method: DELETE
+        path: '/systems/{system}/badges/{badge}/applications/{application}'
+        parameters: [system, badge, application]
+    -
+        method: DELETE
+        path: '/systems/{system}/issuers/{issuer}/badges/{badge}/applications/{application}'
+        parameters: [system, issuer, badge, application]
+    -
+        method: DELETE
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}/applications/{application}'
+        parameters: [system, issuer, program, badge, application]
+delete_review:
+    -
+        method: DELETE
+        path: '/systems/{system}/badges/{badge}/applications/{application}/reviews/{review}'
+        parameters: [system, badge, application, review]
+    -
+        method: DELETE
+        path: '/systems/{system}/issuers/{issuer}/badges/{badge}/applications/{application}/reviews/{review}'
+        parameters: [system, issuer, badge, application, review]
+    -
+        method: DELETE
+        path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}/applications/{application}/reviews/{review}'
+        parameters: [system, issuer, program, badge, application, review]
+get_milestones:
+    -
+        method: GET
+        path: '/systems/{system}/milestones'
+        parameters: [system]
+get_milestone:
+    -
+        method: GET
+        path: '/systems/{system}/milestones/{milestone}'
+        parameters: [system, milestone]
+post_milestone:
+    -
+        method: POST
+        path: '/systems/{system}/milestones'
+        parameters: [system]
+put_milestone:
+    -
+        method: PUT
+        path: '/systems/{system}/milestones/{milestone}'
+        parameters: [system, milestone]
+delete_milestone:
+    -
+        method: DELETE
+        path: '/systems/{system}/milestones/{milestone}'
+        parameters: [system, milestone]
