@@ -59,7 +59,7 @@ class ClientFactory
         $stack = HandlerStack::create();
         $stack->push(Middleware::mapRequest($middleware));
 
-        $this->api = json_decode(file_get_contents(__DIR__.'../res/badgekit.json'));
+        $this->api = json_decode(file_get_contents(__DIR__.'/../res/badgekit.json'), true);
 
         $client = new Client(['base_uri' => $this->base_uri, 'handler' => $stack]);
 
