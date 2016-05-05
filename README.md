@@ -1,5 +1,9 @@
 # BadgeKit Client
 
+[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Software License][ico-license]](LICENSE.md)
+[![Total Downloads][ico-downloads]][link-downloads]
+
 Here is a PHP client for Mozilla's [BadgeKit API][badgekit-api].
 
 ## Install
