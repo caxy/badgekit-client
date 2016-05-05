@@ -16,7 +16,7 @@ $ composer require caxy/badgekit-client
 ## Usage
 
 ``` php
-$factory = new ClientFactory('https://badgekit.example.com', 'MASTER_SECRET_FROM_BADGEKIT');
+$factory = new Caxy\BadgeKit\ClientFactory('https://badgekit.example.com', 'MASTER_SECRET_FROM_BADGEKIT');
 $client = $factory->createServiceClient();
 
 $command = $client->getCommand('get_reviews', [
