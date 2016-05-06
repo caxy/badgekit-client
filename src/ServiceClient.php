@@ -2,35 +2,16 @@
 
 namespace Caxy\BadgeKit;
 
-use Caxy\BadgeKit\Middleware\JwtMiddleware;
-use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Command\CommandInterface;
 use GuzzleHttp\Command\Exception\CommandException;
 use GuzzleHttp\Command\Result;
-use GuzzleHttp\Command\ServiceClient;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Middleware;
-use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-class ClientFactory
+class ServiceClient extends \GuzzleHttp\Command\ServiceClient
 {
-    /**
-     * @var string
-     */
-    private $base_uri;
-
-    /**
-     * @var string
-     */
-    private $secret;
-
-    /**
-     * @var int
-     */
-    private $exp;
-
     /**
      * @var array
      */
@@ -39,38 +20,18 @@ class ClientFactory
     /**
      * BadgeKitClient constructor.
      *
-     * @param $base_uri
-     * @param $secret
-     * @param int $exp
+     * @param ClientInterface $client
      */
-    public function __construct($base_uri, $secret, $exp = 60)
+    public function __construct(ClientInterface $client)
     {
-        $this->base_uri = $base_uri;
-        $this->secret = $secret;
-        $this->exp = $exp;
-    }
-
-    /**
-     * @return ServiceClient
-     */
-    public function createServiceClient()
-    {
-        $middleware = new JwtMiddleware($this->secret, $this->exp);
-
-        $stack = HandlerStack::create();
-        $stack->push(Middleware::mapRequest($middleware));
-
         $this->api = json_decode(file_get_contents(__DIR__.'/../res/badgekit.json'), true);
-
-        $client = new Client(['base_uri' => $this->base_uri, 'handler' => $stack]);
-
-        return new ServiceClient($client, [$this, 'commandToRequestTransformer'], [$this, 'responseToResultTransformer']);
+        parent::__construct($client, [$this, 'commandToRequestTransformer'], [$this, 'responseToResultTransformer']);
     }
 
     /**
      * @param CommandInterface $command
      *
-     * @return Request
+     * @return RequestInterface
      */
     public function commandToRequestTransformer(CommandInterface $command)
     {
@@ -102,7 +63,7 @@ class ClientFactory
             $body = \GuzzleHttp\json_encode($command['body']);
         }
 
-        return new Request($action['method'], $path, $headers, $body);
+        return new Psr7\Request($action['method'], $path, $headers, $body);
     }
 
     /**
