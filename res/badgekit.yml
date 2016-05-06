@@ -465,3 +465,13 @@ deleteMilestone:
         method: DELETE
         path: '/systems/{system}/milestones/{milestone}'
         parameters: [system, milestone]
+addBadgeToMilestone:
+    -
+        method: POST
+        path: '/systems/{system}/milestones/{milestone}/add-badge'
+        parameters: [system, milestone]
+removeBadgeFromMilestone:
+    -
+        method: POST
+        path: '/systems/{system}/milestones/{milestone}/remove-badge'
+        parameters: [system, milestone]
