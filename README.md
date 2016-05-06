@@ -20,7 +20,7 @@ $ composer require caxy/badgekit-client
 $client = new GuzzleHttp\Client([
   'base_uri' => 'https://badgekit.example.com'
 ]);
-$middleware = new Caxy\BadgeKit\Middleware\JwtMiddleware('MASTER_SECRET_FROM_BADGEKIT');
+$middleware = new Caxy\BadgeKit\JwtMiddleware('MASTER_SECRET_FROM_BADGEKIT');
 
 $stack = $client->getConfig('handler');
 $stack->push(GuzzleHttp\Middleware::mapRequest($middleware));

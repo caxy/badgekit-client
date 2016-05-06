@@ -1,6 +1,6 @@
 <?php
 
-namespace Caxy\BadgeKit\Middleware;
+namespace Caxy\BadgeKit;
 
 use Namshi\JOSE\JWS;
 use Psr\Http\Message\RequestInterface;
@@ -20,12 +20,23 @@ class JwtMiddleware
      */
     private $exp;
 
+    /**
+     * JwtMiddleware constructor.
+     *
+     * @param string $secret
+     * @param int $exp
+     */
     public function __construct($secret, $exp = 60)
     {
         $this->secret = $secret;
         $this->exp = $exp;
     }
 
+    /**
+     * @param RequestInterface $request
+     *
+     * @return RequestInterface
+     */
     public function __invoke(RequestInterface $request)
     {
         $uri = $request->getUri();
