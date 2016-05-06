@@ -4,6 +4,7 @@ getSystems:
 getSystem:
     method: GET
     path: '/systems/{system}'
+    public: true
 createSystem:
     method: POST
     path: '/systems'
@@ -20,6 +21,7 @@ getIssuers:
 getIssuer:
     method: GET
     path: '/systems/{system}/issuers/{issuer}'
+    public: true
 createIssuer:
     method: POST
     path: '/systems/{system}/issuers'
@@ -36,6 +38,7 @@ getPrograms:
 getProgram:
     method: GET
     path: '/systems/{system}/issuers/{issuer}/programs/{program}'
+    public: true
 createProgram:
     method: POST
     path: '/systems/{system}/issuers/{issuer}/programs'
@@ -46,18 +49,20 @@ deleteProgram:
     method: DELETE
     path: '/systems/{system}/issuers/{issuer}/programs/{program}'
 
-getPublicBadges:
+getAssertion:
     method: GET
-    path: '/public/badges'
+    path: '/public/assertions/{instance}'
 
 getBadges:
     method: GET
     path: '/badges{?archived,page,count}'
-    admin_contexts: [system, issuer, program]
+    admin_contexts: ['', system, issuer, program]
+    public: true
 getBadge:
     method: GET
     path: '/badges/{badge}'
     admin_contexts: [system, issuer, program]
+    public: true
 createBadge:
     method: POST
     path: '/badges'

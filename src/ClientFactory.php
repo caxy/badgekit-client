@@ -80,14 +80,18 @@ class ClientFactory
         }
         $action = $this->api[$name];
 
+        $prefix = '';
+        if (isset($action['public']) && $command->hasParam('public')) {
+            $prefix = '/public';
+        }
+
         $prefixes = [
             'system' => '/systems/{system}',
             'issuer' => '/issuers/{issuer}',
             'program' => '/programs/{program}',
         ];
-        $prefix = '';
         if (isset($action['admin_contexts'])) {
-            $prefix = implode('', array_intersect_key($prefixes, array_flip($this->api[$name]['admin_contexts']), $command->toArray()));
+            $prefix .= implode('', array_intersect_key($prefixes, array_flip($this->api[$name]['admin_contexts']), $command->toArray()));
         }
         $path = \GuzzleHttp\uri_template($prefix.$action['path'], $command->toArray());
 
