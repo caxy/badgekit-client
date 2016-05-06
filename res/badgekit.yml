@@ -86,6 +86,7 @@ getBadges:
         method: GET
         path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges{?archived,page,count}'
         parameters: [system, issuer, program]
+getPublicBadges:
     -
         method: GET
         path: /public/badges
