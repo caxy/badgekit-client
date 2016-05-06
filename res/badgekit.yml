@@ -234,7 +234,7 @@ deleteClaimCode:
         method: DELETE
         path: '/systems/{system}/issuers/{issuer}/programs/{program}/badges/{badge}/codes/{code}'
         parameters: [system, issuer, program, badge, code]
-getBadgeInstance:
+getUserBadgeInstances:
     -
         method: GET
         path: '/systems/{system}/instances/{email}'
@@ -247,6 +247,7 @@ getBadgeInstance:
         method: GET
         path: '/systems/{system}/issuers/{issuer}/programs/{program}/instances/{email}'
         parameters: [system, issuer, program, email]
+getBadgeInstance:
     -
         method: GET
         path: '/systems/{system}/badges/{badge}/instances/{email}'
