@@ -1,7 +1,7 @@
 getSystems:
     -
         method: GET
-        path: /systems{?page,count}
+        path: '/systems{?page,count}'
         parameters: []
 getSystem:
     -
@@ -11,7 +11,7 @@ getSystem:
 createSystem:
     -
         method: POST
-        path: /systems
+        path: '/systems'
         parameters: []
 updateSystem:
     -
@@ -89,7 +89,7 @@ getBadges:
 getPublicBadges:
     -
         method: GET
-        path: /public/badges
+        path: '/public/badges'
         parameters: []
 getBadge:
     -
