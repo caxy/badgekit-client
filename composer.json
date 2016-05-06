@@ -1,10 +1,14 @@
 {
     "name": "caxy/badgekit-client",
+    "description": "Client for Mozilla BadgeKit API",
+    "homepage": "https://github.com/caxy/badgekit-client",
     "license": "MIT",
     "authors": [
         {
             "name": "Benjamin Doherty",
-            "email": "bjd@bangpound.org"
+            "email": "bdoherty@caxy.com",
+            "homepage": "https://www.caxy.com",
+            "role": "Developer"
         }
     ],
     "require": {
@@ -13,12 +17,23 @@
         "namshi/jose": "^7.1"
     },
     "require-dev": {
+        "phpunit/phpunit": "^5.3",
+        "scrutinizer/ocular": "~1.1",
+        "squizlabs/php_codesniffer": "~2.3",
         "symfony/yaml": "^3.0"
     },
     "autoload": {
         "psr-4": {
-            "Caxy\\BadgeKit\\": "src/"
+            "Caxy\\BadgeKit\\": "src"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Caxy\\BadgeKit\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
     },
     "config": {
         "sort-packages": true
