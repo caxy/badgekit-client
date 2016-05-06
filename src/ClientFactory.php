@@ -61,16 +61,6 @@ class ClientFactory
         $stack->push(Middleware::mapRequest($middleware));
 
         $this->api = json_decode(file_get_contents(__DIR__.'/../res/badgekit.json'), true);
-        $cmpFunction = function ($a, $b) {
-            if (count($a['parameters']) == count($b['parameters'])) {
-                return 0;
-            }
-
-            return (count($a['parameters']) < count($b['parameters'])) ? 1 : -1;
-        };
-        foreach ($this->api as &$actions) {
-            usort($actions, $cmpFunction);
-        }
 
         $client = new Client(['base_uri' => $this->base_uri, 'handler' => $stack]);
 
@@ -85,31 +75,21 @@ class ClientFactory
     public function commandToRequestTransformer(CommandInterface $command)
     {
         $name = $command->getName();
-        $actions = $this->api[$name];
         if (!isset($this->api[$name])) {
             throw new CommandException('Command not found', $command);
         }
+        $action = $this->api[$name];
 
-        if (count($actions) > 1) {
-            $eligible = [];
-            foreach ($actions as $action) {
-                foreach ($action['parameters'] as $parameter) {
-                    if (!$command->hasParam($parameter)) {
-                        continue 2;
-                    }
-                }
-                $eligible[] = $action;
-            }
-        } else {
-            $eligible = $actions;
+        $prefixes = [
+            'system' => '/systems/{system}',
+            'issuer' => '/issuers/{issuer}',
+            'program' => '/programs/{program}',
+        ];
+        $prefix = '';
+        if (isset($action['admin_contexts'])) {
+            $prefix = implode('', array_intersect_key($prefixes, array_flip($this->api[$name]['admin_contexts']), $command->toArray()));
         }
-
-        if (empty($eligible)) {
-            throw new CommandException('Missing parameters for command', $command);
-        }
-
-        $action = $eligible[0];
-        $path = \GuzzleHttp\uri_template($action['path'], $command->toArray());
+        $path = \GuzzleHttp\uri_template($prefix.$action['path'], $command->toArray());
 
         $headers = [];
         $body = null;
