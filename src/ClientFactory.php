@@ -5,6 +5,7 @@ namespace Caxy\BadgeKit;
 use Caxy\BadgeKit\Middleware\JwtMiddleware;
 use GuzzleHttp\Client;
 use GuzzleHttp\Command\CommandInterface;
+use GuzzleHttp\Command\Exception\CommandException;
 use GuzzleHttp\Command\Result;
 use GuzzleHttp\Command\ServiceClient;
 use GuzzleHttp\HandlerStack;
@@ -82,15 +83,28 @@ class ClientFactory
      */
     public function commandToRequestTransformer(CommandInterface $command)
     {
-        $actions = $this->api[$command->getName()];
-        $eligible = [];
-        foreach ($actions as $action) {
-            foreach ($action['parameters'] as $parameter) {
-                if (!$command->hasParam($parameter)) {
-                    continue 2;
+        $name = $command->getName();
+        $actions = $this->api[$name];
+        if (!isset($this->api[$name])) {
+            throw new CommandException('Command not found', $command);
+        }
+
+        if (count($actions) > 1) {
+            $eligible = [];
+            foreach ($actions as $action) {
+                foreach ($action['parameters'] as $parameter) {
+                    if (!$command->hasParam($parameter)) {
+                        continue 2;
+                    }
                 }
+                $eligible[] = $action;
             }
-            $eligible[] = $action;
+        } else {
+            $eligible = $actions;
+        }
+
+        if (empty($eligible)) {
+            throw new CommandException('Missing parameters for command', $command);
         }
 
         $action = $eligible[0];
