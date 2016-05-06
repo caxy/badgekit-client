@@ -96,7 +96,14 @@ class ClientFactory
         $action = $eligible[0];
         $path = \GuzzleHttp\uri_template($action['path'], $command->toArray());
 
-        return new Request($action['method'], $path);
+        $headers = [];
+        $body = null;
+        if ($command->hasParam('body')) {
+            $headers = ['Content-Type' => 'application/json'];
+            $body = \GuzzleHttp\json_encode($command['body']);
+        }
+
+        return new Request($action['method'], $path, $headers, $body);
     }
 
     /**
