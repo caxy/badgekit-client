@@ -88,6 +88,10 @@ createClaimCode:
     method: POST
     path: '/badges/{badge}/codes'
     admin_contexts: [system, issuer, program]
+deleteClaimCode:
+    method: DELETE
+    path: '/badges/{badge}/codes/{code}'
+    admin_contexts: [system, issuer, program]
 claimCode:
     method: POST
     path: '/badges/{badge}/codes/{code}/claim'
@@ -95,10 +99,6 @@ claimCode:
 createRandomCode:
     method: POST
     path: '/badges/{badge}/codes/random'
-    admin_contexts: [system, issuer, program]
-deleteClaimCode:
-    method: DELETE
-    path: '/badges/{badge}/codes/{code}'
     admin_contexts: [system, issuer, program]
 
 getUserBadgeInstances:
