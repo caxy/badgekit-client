@@ -312,6 +312,7 @@ getApplications:
         method: GET
         path: '/systems/{system}/issuers/{issuer}/programs/{program}/applications{?page,count}'
         parameters: [system, issuer, program]
+getBadgeApplications:
     -
         method: GET
         path: '/systems/{system}/badges/{badge}/applications{?page,count}'
