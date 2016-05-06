@@ -28,11 +28,15 @@ class JwtMiddleware
 
     public function __invoke(RequestInterface $request)
     {
+        $uri = $request->getUri();
+        $path = $uri->getPath();
+        $path .= $uri->getQuery() != null ? '?'.$uri->getQuery() : '';
+
         $payload = [
           'key' => 'master',
           'exp' => time() + $this->exp,
           'method' => $request->getMethod(),
-          'path' => $request->getUri()->getPath(),
+          'path' => $path,
         ];
 
         if (in_array($request->getMethod(), ['PUT', 'POST'])) {
