@@ -60,6 +60,15 @@ class ClientFactory
         $stack->push(Middleware::mapRequest($middleware));
 
         $this->api = json_decode(file_get_contents(__DIR__.'/../res/badgekit.json'), true);
+        foreach ($this->api as &$actions) {
+            usort($actions, function ($a, $b) {
+                if (count($a['parameters']) == count($b['parameters'])) {
+                    return 0;
+                }
+
+                return ($a['parameters'] < $b['parameters']) ? 1 : -1;
+            });
+        }
 
         $client = new Client(['base_uri' => $this->base_uri, 'handler' => $stack]);
 
