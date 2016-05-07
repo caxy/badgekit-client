@@ -24,7 +24,7 @@ class JwtMiddleware
      * JwtMiddleware constructor.
      *
      * @param string $secret
-     * @param int $exp
+     * @param int    $exp
      */
     public function __construct($secret, $exp = 60)
     {
