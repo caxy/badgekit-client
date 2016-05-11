@@ -2,6 +2,7 @@
 
 namespace Caxy\BadgeKit;
 
+use GuzzleHttp;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Command\CommandInterface;
 use GuzzleHttp\Command\Exception\CommandException;
@@ -66,7 +67,7 @@ use Psr\Http\Message\ResponseInterface;
  * @method ResultInterface addBadgeToMilestone(array $args) add badge to milestone
  * @method ResultInterface removeBadgeFromMilestone(array $args) remove badge from milestone
  */
-class ServiceClient extends \GuzzleHttp\Command\ServiceClient
+class ServiceClient extends GuzzleHttp\Command\ServiceClient
 {
     /**
      * @var array
@@ -110,13 +111,13 @@ class ServiceClient extends \GuzzleHttp\Command\ServiceClient
         if (isset($action['admin_contexts'])) {
             $prefix .= implode('', array_intersect_key($prefixes, array_flip($this->api[$name]['admin_contexts']), $command->toArray()));
         }
-        $path = \GuzzleHttp\uri_template($prefix.$action['path'], $command->toArray());
+        $path = GuzzleHttp\uri_template($prefix.$action['path'], $command->toArray());
 
         $headers = [];
         $body = null;
         if ($command->hasParam('body')) {
             $headers = ['Content-Type' => 'application/json'];
-            $body = \GuzzleHttp\json_encode($command['body']);
+            $body = GuzzleHttp\json_encode($command['body']);
         }
 
         return new Psr7\Request($action['method'], $path, $headers, $body);
