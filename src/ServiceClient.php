@@ -75,14 +75,21 @@ class ServiceClient extends GuzzleHttp\Command\ServiceClient
     private $api;
 
     /**
+     * @var array
+     */
+    private $adminContext;
+
+    /**
      * BadgeKitClient constructor.
      *
      * @param ClientInterface $client
+     * @param array           $adminContext
      */
-    public function __construct(ClientInterface $client)
+    public function __construct(ClientInterface $client, array $adminContext = [])
     {
         $this->api = json_decode(file_get_contents(__DIR__.'/../res/badgekit.json'), true);
         parent::__construct($client, [$this, 'commandToRequestTransformer'], [$this, 'responseToResultTransformer']);
+        $this->adminContext = $adminContext;
     }
 
     /**
@@ -109,9 +116,9 @@ class ServiceClient extends GuzzleHttp\Command\ServiceClient
             'program' => '/programs/{program}',
         ];
         if (isset($action['admin_contexts'])) {
-            $prefix .= implode('', array_intersect_key($prefixes, array_flip($this->api[$name]['admin_contexts']), $command->toArray()));
+            $prefix .= implode('', array_intersect_key($prefixes, array_flip($action['admin_contexts']), array_merge($command->toArray(), $this->adminContext)));
         }
-        $path = GuzzleHttp\uri_template($prefix.$action['path'], $command->toArray());
+        $path = GuzzleHttp\uri_template($prefix.$action['path'], array_merge($command->toArray(), $this->adminContext));
 
         $headers = [];
         $body = null;
