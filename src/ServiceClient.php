@@ -127,6 +127,10 @@ class ServiceClient extends GuzzleHttp\Command\ServiceClient
             $body = GuzzleHttp\json_encode($command['body']);
         }
 
+        if ($command->hasParam('query')) {
+            $path .= '?'.Psr7\build_query($command['query']);
+        }
+
         return new Psr7\Request($action['method'], $path, $headers, $body);
     }
 
